@@ -3,18 +3,16 @@ using JWTAPP.BACK.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace JWTAPP.BACK.Migrations
+namespace JWTAPP.BACK.Persistance.Migrations
 {
     [DbContext(typeof(JwtAppContext))]
-    [Migration("20240303185724_InitialCreate3")]
-    partial class InitialCreate3
+    partial class JwtAppContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

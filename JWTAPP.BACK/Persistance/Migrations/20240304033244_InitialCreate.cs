@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace JWTAPP.BACK.Migrations
+namespace JWTAPP.BACK.Persistance.Migrations
 {
     public partial class InitialCreate : Migration
     {

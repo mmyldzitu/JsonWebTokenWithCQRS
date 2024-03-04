@@ -22,9 +22,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Persistance\Core\Application\" />
-    <Folder Include="Persistance\Migrations\" />
-    <Folder Include="Persistance\Repositories\" />
+    <Folder Include="Persistance\Core\Application\Features\CQRS\" />
+    <Folder Include="Persistance\Mİgrations\" />
   </ItemGroup>
 
 </Project>
