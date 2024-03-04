@@ -1,7 +1,11 @@
+using AutoMapper;
 using JWTAPP.BACK.Persistance.Context;
 using JWTAPP.BACK.Persistance.Core.Application.Interfaces;
+using JWTAPP.BACK.Persistance.Core.Application.Mappings;
 using JWTAPP.BACK.Persistance.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +22,17 @@ builder.Services.AddDbContext<JwtAppContext>(opt =>
 
 });
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(opt => {
+
+    opt.AddProfiles(new List<Profile>
+    {
+        new ProductProfile(),
+        new CategoryProfile(),  
+
+
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
