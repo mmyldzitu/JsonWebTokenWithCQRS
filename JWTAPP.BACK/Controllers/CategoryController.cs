@@ -1,11 +1,12 @@
 ﻿using JWTAPP.BACK.Persistance.Core.Application.Features.CQRS.Commands;
 using JWTAPP.BACK.Persistance.Core.Application.Features.CQRS.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWTAPP.BACK.Controllers
 {
-
+    [Authorize(Roles ="Admin")]
     [ApiController]
     [Route("api/[controller]")]
     public class CategoryController:ControllerBase
@@ -39,7 +40,7 @@ namespace JWTAPP.BACK.Controllers
         public async Task<IActionResult> Remove(int id)
         {
             await _mediator.Send(new DeleteCategoryCommandRequest(id));
-            return NoContent();
+            return Ok();
         }
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryCommandRequest request)

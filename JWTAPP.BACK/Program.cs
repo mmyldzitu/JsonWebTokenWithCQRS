@@ -1,16 +1,34 @@
 using AutoMapper;
+using JWTAPP.BACK.Infrastructure.Tools;
 using JWTAPP.BACK.Persistance.Context;
 using JWTAPP.BACK.Persistance.Core.Application.Interfaces;
 using JWTAPP.BACK.Persistance.Core.Application.Mappings;
 using JWTAPP.BACK.Persistance.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    {
+        ValidAudience=JwtTokenDefaults.ValidAudiance,
+        ValidIssuer=JwtTokenDefaults.ValidIssuer,
+        ClockSkew= TimeSpan.Zero,
+        IssuerSigningKey= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+        ValidateIssuerSigningKey=true,
+        ValidateLifetime = true
+    };
 
+
+});
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -41,7 +59,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
