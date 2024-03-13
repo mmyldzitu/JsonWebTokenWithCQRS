@@ -33,6 +33,8 @@ namespace JWTAPP.BACK.Infrastructure.Tools
 
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             //handler.WriteToken();
+            
+               
             return new TokenResponseDto(handler.WriteToken(jwtSecurityToken),expireDate );
         }
     }
