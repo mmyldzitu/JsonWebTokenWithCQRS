@@ -1,0 +1,53 @@
+﻿@using System.Text.Json
+@model UpdateProductModel
+@{
+    Layout = "_Layout";
+}
+
+
+<form class="w-75 m-5 p-3  mx-auto" asp-action="Update" asp-controller="Product" method="post">
+
+
+    @{
+        TempData["Categories"] = JsonSerializer.Serialize(Model.Categories);
+    }
+
+    <div class="mb-3">
+        <label for="@Model.Name" class="form-label">
+            Ürün Adı:
+        </label>
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        <input type="text" asp-for="@Model.Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="@Model.Stock" class="form-label">
+            Ürün Stoğu:
+        </label>
+        <span asp-validation-for="@Model.Stock" class="text-danger"></span>
+        <input asp-for="@Model.Stock" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="@Model.Name" class="form-label">
+            Ürün Fiyatı:
+        </label>
+        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+
+        <input asp-for="@Model.Price" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="@Model.CategoryId" class="form-label">
+            Ürün Kategorisi:
+        </label>
+        <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
+
+        <select class="form-select" asp-items="@Model.Categories" asp-for="@Model.CategoryId">
+        </select>
+    </div>
+
+
+    <div class="mb-3">
+        <button class="btn btn-primary w-100">Kaydet</button>
+
+        <div asp-validation-summary="ModelOnly" class="tex-danger"></div>
+    </div>
+</form>
