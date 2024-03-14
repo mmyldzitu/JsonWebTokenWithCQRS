@@ -25,7 +25,7 @@ namespace Onion.JWTAPP.Application.Features.CQRS.Handlers
             if(entity!=null)
             {
                 entity.Definition = request.Definition;
-                await _repository.UpdateAsync(entity);
+                await _repository.SaveChangesAsync();
                 
                     
             }

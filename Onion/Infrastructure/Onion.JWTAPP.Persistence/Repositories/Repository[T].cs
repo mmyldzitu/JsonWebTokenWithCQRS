@@ -47,6 +47,11 @@ namespace Onion.JWTAPP.Persistence.Repositories
             await _jwtContext.SaveChangesAsync();
         }
 
+        public async Task<int> SaveChangesAsync()
+        {
+           return await _jwtContext.SaveChangesAsync();
+        }
+
         public async Task UpdateAsync(T entity)
         {
             _jwtContext.Set<T>().Update(entity);

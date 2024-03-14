@@ -21,7 +21,9 @@ namespace Onion.JWTAPP.Application
             {
                 opt.AddProfiles(new List<Profile>
                 {
-                   new CategoryProfile()
+                   new CategoryProfile(),
+                   new ProductProfile(),
+                   new AppUserProfile(),
                 });
             });
 
