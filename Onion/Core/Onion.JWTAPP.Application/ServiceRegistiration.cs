@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Onion.JWTAPP.Application.Mappings;
+using Onion.JWTAPP.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +21,7 @@ namespace Onion.JWTAPP.Application
             {
                 opt.AddProfiles(new List<Profile>
                 {
-                    
+                   new CategoryProfile()
                 });
             });
 

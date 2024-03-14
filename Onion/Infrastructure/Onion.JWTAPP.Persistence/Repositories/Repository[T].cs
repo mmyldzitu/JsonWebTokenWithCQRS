@@ -19,10 +19,11 @@ namespace Onion.JWTAPP.Persistence.Repositories
             _jwtContext = jwtContext;
         }
 
-        public  async Task CreateAsync(T entity)
+        public  async Task<T?> CreateAsync(T entity)
         {
             await _jwtContext.Set<T>().AddAsync(entity);
             await _jwtContext.SaveChangesAsync();
+            return entity;
         }
 
         public async  Task<List<T>> GetAllAsync()
@@ -37,7 +38,7 @@ namespace Onion.JWTAPP.Persistence.Repositories
 
         public async  Task<T?> GetByIdAsync(object id)
         {
-            return await _jwtContext.Set<T>().FirstAsync();
+            return await _jwtContext.Set<T>().FindAsync(id);
         }
 
         public async Task Remove(T entity)
@@ -50,6 +51,7 @@ namespace Onion.JWTAPP.Persistence.Repositories
         {
             _jwtContext.Set<T>().Update(entity);
             await _jwtContext.SaveChangesAsync();
+            
         }
     }
 }
